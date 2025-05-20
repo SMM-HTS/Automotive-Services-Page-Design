@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPro Services | Premium Automotive Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2a2a2a;
+            text-decoration: none;
+        }
+        .logo span {
+            color: #ff6b00;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2a2a2a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ff6b00;
+        }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.6s;
+        }
+        .btn {
+            display: inline-block;
+            background: #ff6b00;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.9s;
+        }
+        .btn:hover {
+            background: #e05d00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .car-animation {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 200px;
+            opacity: 0;
+            animation: carDrive 15s linear infinite 1.5s, fadeIn 1s forwards 1.2s;
+        }
+        @keyframes carDrive {
+            0% { transform: translateX(-200px); }
+            100% { transform: translateX(calc(100vw + 200px)); }
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .services {
+            padding: 100px 0;
+            background: #fff;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2a2a2a;
+            margin-bottom: 15px;
+        }
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .service-card:nth-child(1) { animation: fadeInUp 0.8s forwards 0.2s; }
+        .service-card:nth-child(2) { animation: fadeInUp 0.8s forwards 0.4s; }
+        .service-card:nth-child(3) { animation: fadeInUp 0.8s forwards 0.6s; }
+        .service-card:nth-child(4) { animation: fadeInUp 0.8s forwards 0.8s; }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        .service-content {
+            padding: 25px;
+        }
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2a2a2a;
+        }
+        .service-content p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+        .service-content a {
+            color: #ff6b00;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        .service-content a i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        .service-content a:hover i {
+            transform: translateX(5px);
+        }
+        .why-choose {
+            padding: 100px 0;
+            background: #f5f5f5;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .feature {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+        .feature i {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 20px;
+        }
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2a2a2a;
+        }
+        .feature p {
+            color: #777;
+        }
+        .testimonials {
+            margin-top: 60px;
+        }
+        .testimonials h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #2a2a2a;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .testimonial-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        .testimonial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .testimonial-info h4 {
+            font-size: 1.2rem;
+            color: #2a2a2a;
+            margin-bottom: 5px;
+        }
+        .testimonial-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .testimonial-text {
+            color: #555;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        .rating {
+            color: #ffc107;
+            margin-top: 10px;
+        }
+        .awards {
+            margin-top: 60px;
+        }
+        .awards h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #2a2a2a;
+        }
+        .award-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .award-logo {
+            height: 80px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+        .award-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+        .guarantee {
+            background: #ff6b00;
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 60px;
+            border-radius: 10px;
+        }
+        .guarantee h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .guarantee p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+        }
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta .btn {
+            background: #fff;
+            color: #ff6b00;
+            font-size: 1.1rem;
+            padding: 15px 40px;
+        }
+        .cta .btn:hover {
+            background: #ff6b00;
+            color: #fff;
+        }
+        footer {
+            background: #2a2a2a;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #ff6b00;
+        }
+        .footer-column p {
+            color: #bbb;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: #ff6b00;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        .social-links a:hover {
+            background: #ff6b00;
+            transform: translateY(-5px);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Auto<span>Pro</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Automotive Services</h1>
+            <p>Experience top-notch car care with our expert technicians and state-of-the-art facilities. Your vehicle deserves the best treatment.</p>
+            <a href="#" class="btn">Book an Appointment</a>
+        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/744/744465.png" alt="Car" class="car-animation">
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer a comprehensive range of automotive services to keep your vehicle running smoothly and looking its best.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Engine Repair">
+                    </div>
+                    <div class="service-content">
+                        <h3>Engine Repair</h3>
+                        <p>Professional diagnostics and repair services for all engine types and issues.</p>
+                        <a href="#">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1583&q=80" alt="Brake Service">
+                    </div>
+                    <div class="service-content">
+                        <h3>Brake Service</h3>
+                        <p>Complete brake inspections, repairs, and replacements for optimal safety.</p>
+                        <a href="#">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Car Detailing">
+                    </div>
+                    <div class="service-content">
+                        <h3>Car Detailing</h3>
+                        <p>Premium interior and exterior detailing to restore your vehicle's showroom shine.</p>
+                        <a href="#">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Tire Service">
+                    </div>
+                    <div class="service-content">
+                        <h3>Tire Service</h3>
+                        <p>Complete tire services including rotation, balancing, alignment, and replacements.</p>
+                        <a href="#">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+                <p>We're committed to providing exceptional service and building lasting relationships with our customers.</p>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-award"></i>
+                    <h3>Certified Technicians</h3>
+                    <p>Our team consists of factory-trained and certified professionals with years of experience.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-tools"></i>
+                    <h3>Quality Equipment</h3>
+                    <p>We use only the latest diagnostic tools and high-quality parts for all repairs.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h3>Fair Pricing</h3>
+                    <p>Competitive, transparent pricing with no hidden fees or unnecessary upsells.</p>
+                </div>
+            </div>
+
+            <div class="testimonials">
+                <h3>What Our Customers Say</h3>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-img">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John D.">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4>John D.</h4>
+                                <p>Regular Customer</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-text">
+                            <p>"AutoPro has been servicing my cars for years. Their attention to detail and honest approach keeps me coming back. They've saved me thousands by catching small issues before they became big problems."</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-img">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M.">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4>Sarah M.</h4>
+                                <p>First-time Customer</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-text">
+                            <p>"I was nervous about finding a new mechanic after moving to the area, but AutoPro made me feel at ease. They explained everything clearly and had my car ready sooner than promised. Highly recommend!"</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-header">
+                            <div class="testimonial-img">
+                                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michael T.">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4>Michael T.</h4>
+                                <p>Business Customer</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-text">
+                            <p>"As a small business owner with a fleet of vehicles, reliability is crucial. AutoPro keeps our vans and trucks on the road with prompt, professional service. Their commercial account program is a lifesaver."</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="awards">
+                <h3>Awards & Recognitions</h3>
+                <div class="award-logos">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062635.png" alt="ASE Certified" class="award-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062655.png" alt="AAA Approved" class="award-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062637.png" alt="Best in Service" class="award-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062647.png" alt="Top Rated" class="award-logo">
+                </div>
+            </div>
+
+            <div class="guarantee">
+                <h3>Our Service Guarantee</h3>
+                <p>We stand behind all our work with a 12-month/12,000-mile warranty on parts and labor. If you're not completely satisfied, we'll make it right - no questions asked.</p>
+                <a href="#" class="btn">Learn About Our Warranty</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Experience the AutoPro Difference?</h2>
+            <p>Schedule your service appointment online today and enjoy 10% off your first visit with us. Our team is standing by to provide the exceptional service your vehicle deserves.</p>
+            <a href="#" class="btn">Book Now & Save 10%</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About AutoPro</h3>
+                    <p>Founded in 2005, AutoPro has grown to become the premier automotive service center in the region, known for our technical expertise and customer-first approach.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Engine Repair</a></li>
+                        <li><a href="#">Brake Service</a></li>
+                        <li><a href="#">Transmission</a></li>
+                        <li><a href="#">Car Detailing</a></li>
+                        <li><a href="#">Tire Services</a></li>
+                        <li><a href="#">Diagnostics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Auto Service Rd, Cityville</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@autopro.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 7:30AM - 6PM<br>Sat: 8AM - 4PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AutoPro Automotive Services. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            serviceCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                const heroContent = document.querySelector('.hero-content');
+                
+                if (scrollPosition > 100) {
+                    heroContent.style.transform = `translateY(${-scrollPosition * 0.2}px)`;
+                }
+            });
+            
+            const car = document.querySelector('.car-animation');
+            let position = -200;
+            
+            function animateCar() {
+                position += 2;
+                if (position > window.innerWidth + 200) {
+                    position = -200;
+                }
+                car.style.transform = `translateX(${position}px)`;
+                requestAnimationFrame(animateCar);
+            }
+            
+            setTimeout(() => {
+                animateCar();
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
